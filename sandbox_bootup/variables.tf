@@ -10,7 +10,7 @@ variable email {
   type = string
 }
 
-variable limit_jpy_amount {
+variable limit_usd_amount {
   type = number
-  default = 1000
+  default = 10
 }

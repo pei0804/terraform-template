@@ -92,8 +92,8 @@ resource aws_iam_account_password_policy strict {
 resource aws_budgets_budget cost {
   name              = "sandbox"
   budget_type       = "COST"
-  limit_amount      = var.limit_jpy_amount
-  limit_unit        = "JPY"
+  limit_amount      = var.limit_usd_amount
+  limit_unit        = "USD"
   time_period_start = "2020-05-10_00:00"
   time_unit         = "MONTHLY"
 
@@ -104,4 +104,11 @@ resource aws_budgets_budget cost {
     notification_type          = "FORECASTED"
     subscriber_email_addresses = [var.email]
   }
+}
+
+###########
+# GuardDuty
+###########
+resource aws_guardduty_detector sandbox {
+  enable = true
 }
