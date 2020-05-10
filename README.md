@@ -1,31 +1,36 @@
 # Getting Started
 
-tfstateを置くバケットを作成します（既存のものがあればやらなくてもOK）
+tfstateを置くバケットを作成します（既存のものがあればやらなくてもOK）  
+CLIで作る場合は、お好みのバージョンを使ってください。  
+筆者はPCに入ってたCLIでバケットを作成しました。
 
 ```
-~/go/src/github.com/pei0804/terraform-template init
-❯ aws2 --version
-aws-cli/2.0.0dev4 Python/3.7.4 Darwin/17.7.0 botocore/2.0.0dev3
-❯ aws2 s3api create-bucket --bucket hoge-sandbox-tfstate --region ap-northeast-1
+❯ aws --version
+aws-cli/1.18.56 Python/3.7.0 Darwin/17.7.0 botocore/1.16.6
+❯ aws s3api --profile pei create-bucket --bucket pei-sandbox-tfstate --create-bucket-configuration LocationConstraint=ap-northeast-1
+{
+    "Location": "http://pei-sandbox-tfstate.s3.amazonaws.com/"
+}
 ```
 
 [Makefileのパラメーターをいじる](./Makefile)
 
-作成したバケット
+作成したバケット名に変更する
 
 ```
-TFSTATE_BUCKET := hoge-sandbox-tfstate
+TFSTATE_BUCKET := pei-sandbox-tfstate
 ```
 
-プロファイルを設定してください。 `~/.aws/config`
+プロファイルを設定してください。 `~/.aws/config`  
+私の場合は、peiというプロファイルを作成していたので、`pei`とします。
 
 ```
-AWS_PROFILE := default or your profilename
+AWS_PROFILE := pei
 ```
 
 設定を適用
 
 ```
-❯ make plan SCOPE=sandbox_bootup/ #良さそうならapplyもしよう
-❯ make apply SCOPE=sandbox_bootup/
+❯ make plan SCOPE=example/ #良さそうならapplyもしよう
+❯ make apply SCOPE=example/
 ```
