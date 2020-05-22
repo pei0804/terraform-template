@@ -28,6 +28,12 @@ TFSTATE_BUCKET := pei-sandbox-tfstate
 AWS_PROFILE := pei
 ```
 
+特にプロファイルの設定をしてない場合はdefaultで動きます
+
+```
+AWS_PROFILE := default
+```
+
 設定を適用
 
 ```
